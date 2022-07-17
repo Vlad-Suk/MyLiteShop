@@ -18,6 +18,8 @@ builder.Services.AddDbContext<ShopDbContext>(options =>
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll", a => a.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()));
 
+builder.Services.AddScoped<IShopRepository, EFShopRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
