@@ -7,6 +7,6 @@ namespace MyLiteShop.Models
         public ShopDbContext(DbContextOptions<ShopDbContext> options)
             : base(options) { }
 
-        public DbSet<Product> Products => Set<Product>();
+        public DbSet<Product> Products { get; set; }
     }
 }

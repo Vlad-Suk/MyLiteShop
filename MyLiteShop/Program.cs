@@ -14,7 +14,7 @@ builder.Services.AddDbContext<ShopDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration["ConnectionStrings:ShopConnection"]);
 });
-// todo: 
+
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll", a => a.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()));
 

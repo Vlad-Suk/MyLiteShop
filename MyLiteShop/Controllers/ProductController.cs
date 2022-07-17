@@ -27,7 +27,8 @@ namespace MyLiteShop.Controllers
             {
                 return NotFound();
             }
-            return await _context.Products.ToListAsync();
+            var products = await _context.Products.ToListAsync();
+            return Ok(products);
         }
 
         [HttpGet("{id}")]
@@ -43,7 +44,7 @@ namespace MyLiteShop.Controllers
             {
                 return NotFound();
             }
-            return productItem;
+            return Ok(productItem);
         }
 
         [HttpPut("{id}")]
@@ -54,7 +55,7 @@ namespace MyLiteShop.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(product).State = EntityState.Modified;
+            _context.Update(product);
 
             try
             {
@@ -79,12 +80,12 @@ namespace MyLiteShop.Controllers
         {
             if (_context.Products == null)
             {
-                return Problem("Entity set 'ShopDbContext.Produsrs'  is null.");
+                return Problem("Entity set 'ShopDbContext.Products'  is null.");
             }
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetProductItem), new {id = product.Id}, product);
+            return CreatedAtAction(nameof(GetProductItem), new { id = product.Id }, product);
         }
 
         [HttpDelete("{id}")]
@@ -103,7 +104,7 @@ namespace MyLiteShop.Controllers
             _context.Products.Remove(productItem);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         private bool ProductExists(int id)
