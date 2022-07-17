@@ -1,12 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using MyLiteShop.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<ShopDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration["ConnectionStrings:ShopConnection"]);
+});
+// todo: 
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll", a => a.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()));
 
@@ -21,8 +29,6 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
 
 app.MapControllers();
 
