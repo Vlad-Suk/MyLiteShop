@@ -1,15 +1,24 @@
-  MyLiteShop
-  
-1. MyLiteShop - is a test project to employment opportunity in one company.
-2. List of used technologies:
-- ASP.Net Core;
-- Microsoft Entity Framework Core;
-- PostgreSQL;
-- SwaggerUI;
-3. How to set up?
+# MyLiteShop 
 
-You need to instal PostgreSQL. Create DataBase with a name, what you will use in a ConnectionString. After it you need to configure your ConnectionString in a [secret](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows#json-structure-flattening-in-visual-studio) file.
+is a minimal WebApi test task for employment opportunity in one company. 
 
-In the end you need to open a PowerShell and run command from folder with project: dotnet ef database update. 
+# Technologies
 
-After these manipulations you can use my project.
+ - ASP.Net Core
+ - Microsoft Entity Framework Core
+ - PostgreSQL
+ - SwaggerUI
+
+# How to set up
+
+1. You need to [install PostgreSQL](https://www.postgresql.org/). Create database with a name, that you will be using in a ConnectionString. 
+2. After it you need to configure your ConnectionString in a [secrets.json](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows#json-structure-flattening-in-visual-studio) file. See example:
+```json
+{
+  "ConnectionStrings": {
+    "ShopConnection": "User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=myLiteShop;"
+  }
+}
+```
+3. In the end you need to open a PowerShell and run command from project folder: `dotnet ef database update`. 
+4. After these manipulations you can use my project.
